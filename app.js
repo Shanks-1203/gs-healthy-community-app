@@ -32,7 +32,6 @@ const pdfButton = document.getElementById("pdfButton");
 const numberOfCupsRow = document.getElementById("numberOfCupsRow");
 const snacksWhatRow = document.getElementById("snacksWhatRow");
 const currentStepLabel = document.getElementById("currentStepLabel");
-const reportSheet = document.getElementById("reportSheet");
 
 let currentStep = 0;
 
@@ -105,7 +104,7 @@ function syncConditionalRows() {
   const teaCoffee = getRadioValue("teaCoffee");
   const snacks = getRadioValue("snacks");
 
-  toggleConditionalRow(numberOfCupsRow, "numberOfCups", teaCoffee === "Yes");
+  toggleConditionalRow(numberOfCupsRow, "numberOfCups", (teaCoffee === "Tea" || teaCoffee === "Coffee"));
   toggleConditionalRow(snacksWhatRow, "snacksWhat", snacks === "Yes");
 }
 
@@ -138,9 +137,13 @@ function updateAutoMetrics() {
 }
 
 function calculateCost() {
-  const duration = getNumber("programDuration");
-  const totalAmount = duration === null ? 0 : duration * PROGRAM_RATE;
-  document.getElementById("programTotalValue").textContent = `Total Amount = Rs. ${totalAmount ? formatNumber(totalAmount) : "0"}`;
+  const duration = getNumber("programDuration") ?? 0;
+  const totalAmount = duration * PROGRAM_RATE;
+  const daysCount = duration === 1 ? "day" : "days";
+
+  document.getElementById("programDuration").value = "";
+  document.getElementById("programDaysSelected").textContent = `${duration} ${daysCount}`;
+  document.getElementById("programTotalValue").textContent = `₹${formatNumber(totalAmount)}`;
 }
 
 function renderReport() {
@@ -156,15 +159,57 @@ function renderReport() {
   `;
 
   document.getElementById("reportBodySummary").innerHTML = `
+    ${renderSummaryRow("Gender", valueOrFallback(data.gender))}
     ${renderSummaryRow("Age", valueOrFallback(data.age))}
     ${renderSummaryRow("Height", data.heightText)}
-    ${renderSummaryRow("Weight", data.weightText, `(${data.idealWeightText})`)}
+    ${renderSummaryRow("Weight", data.weightText, `${data.idealWeightText}`)}
     ${renderSummaryRow("Body Fat %", data.bodyFatText, data.bodyFatNormal)}
-    ${renderSummaryRow("Visceral Fat", data.visceralFatText, "Normal 1-9")}
-    ${renderSummaryRow("BMI", `${data.reportBmiText} (${data.reportBmiCategory})`, "Normal 18.5-24.9")}
+    ${renderSummaryRow("Visceral Fat", data.visceralFatText, "Normal: 1-9")}
+    ${renderSummaryRow("BMI", `${data.reportBmiText}`, "Normal: 18.5-24.9")}
     ${renderSummaryRow("BMR", valueOrFallback(data.bmr))}
     ${renderSummaryRow("Body Age", valueOrFallback(data.bodyAge))}
   `;
+
+  const reportBmiCategoryBadge = document.getElementById("report-bmi-badge");
+  reportBmiCategoryBadge.innerText = data.reportBmiCategory;
+  reportBmiCategoryBadge.dataset.state =
+    data.reportBmiCategory === "Normal" ? "good" : data.reportBmiCategory === "Underweight" ? "warn" : data.reportBmiCategory === "Overweight" ? "warn" : data.reportBmiCategory === "Obese" ? "high" : "neutral";
+
+  const wakeUpTime = document.getElementById("wake-up-time-value");
+  wakeUpTime.innerText = formatTime(data.wakeUpTime);
+
+  const teaCoffee = document.getElementById("tea-coffee-value");
+  teaCoffee.innerHTML = `${data.teaCoffee}${data.numberOfCups ? ` (${data.numberOfCups} cups)` : ""}`;
+
+  const breakfastTime = document.getElementById("breakfast-time-value");
+  breakfastTime.innerText = formatTime(data.breakfastTime);
+
+  const breakfastDetails = document.getElementById("breakfast-details-value");
+  breakfastDetails.innerText = data.breakfastWhat;
+
+  const lunchTime = document.getElementById("lunch-time-value");
+  lunchTime.innerText = formatTime(data.lunchTime);
+
+  const lunchDetails = document.getElementById("lunch-details-value");
+  lunchDetails.innerText = data.lunchWhat;
+
+  const snacks = document.getElementById("snacks-value");
+  snacks.innerText = data.snacks;
+
+  const snacksDetailsColumn = document.getElementById("snacksDetailsColumn");
+  const snacksDetails = document.getElementById("snacks-details-value");
+
+  snacksDetails.innerText = data.snacksWhat || "--";
+  snacksDetailsColumn.style.visibility = data.snacksWhat ? "" : "hidden";
+
+  const dinnerTime = document.getElementById("dinner-time-value");
+  dinnerTime.innerText = formatTime(data.dinnerTime);
+
+  const dinnerDetails = document.getElementById("dinner-details-value");
+  dinnerDetails.innerText = data.dinnerWhat;
+
+  const waterIntake = document.getElementById("water-intake-value");
+  waterIntake.innerText = `${data.waterIntake} litres`;
 
   const selectedConditions = [...data.selectedConditions];
   if (data.otherCondition) {
@@ -177,6 +222,17 @@ function renderReport() {
     ? selectedConditions.map((item) => `<div class="report-condition-item">${escapeHtml(item)}</div>`).join("")
     : `<div class="report-condition-item muted">No Health Issues</div>`;
 
+}
+
+function formatTime(time) {
+  if (!time) return "--";
+
+  const [hours, minutes] = time.split(":");
+  const h = Number(hours);
+  const period = h >= 12 ? "PM" : "AM";
+  const hour12 = h % 12 || 12;
+
+  return `${String(hour12).padStart(2, "0")}:${minutes} ${period}`;
 }
 
 function renderReportRow(label, value) {
@@ -192,7 +248,8 @@ function renderSummaryRow(label, value, subValue = "") {
   const hasSubValue = subValue && subValue !== "--";
   return `
     <div class="summary-row">
-      <div class="main-line">${escapeHtml(label)} - ${escapeHtml(valueOrFallback(value))}</div>
+      <div class="main-line">${escapeHtml(label)}</div>
+      <div class="value-line">${escapeHtml(valueOrFallback(value))}</div>
       ${hasSubValue ? `<div class="sub-line">${escapeHtml(subValue)}</div>` : ""}
     </div>
   `;
@@ -246,7 +303,7 @@ function collectData() {
     bodyFatNormal,
     heightText: height === null ? "--" : `${formatNumber(height)} cm`,
     weightText: weight === null ? "Weight - --" : `${formatNumber(weight)} kg`,
-    idealWeightText: idealWeight === null ? "Ideal -- kg" : `Ideal ${formatNumber(idealWeight)} kg`,
+    idealWeightText: idealWeight === null ? "Ideal -- kg" : `Ideal: ${formatNumber(idealWeight)} kg`,
     bodyFatText: valueWithUnit(getValue("bodyFat"), "%"),
     visceralFatText: valueOrFallback(getValue("visceralFat")),
     reportBmiText: reportBmi === null ? "--" : reportBmi,
@@ -360,34 +417,17 @@ function syncStepUi() {
 async function downloadPdf() {
   setStep(3);
 
-  await new Promise(resolve => setTimeout(resolve, 300));
+  const originalTitle = document.title;
+  document.title = buildPdfFileName();
 
-  const filename = buildPdfFileName();
-
-  const options = {
-    margin: 0,
-    filename,
-    image: { type: "jpeg", quality: 1 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true
-    },
-    jsPDF: {
-      unit: "in",
-      format: "a4",
-      orientation: "portrait"
-    },
-    pagebreak: { mode: ["css", "legacy"] }
-  };
-
-  html2pdf()
-    .set(options)
-    .from(reportSheet)
-    .save();
+  setTimeout(() => {
+    window.print();
+    document.title = originalTitle;
+  }, 300);
 }
 
 function buildPdfFileName() {
-  const name = getValue("name").trim().replace(/\s+/g, "-").toLowerCase() || "client-report";
+  const name = getValue("name").trim().replace(/\s+/g, "-").toLowerCase() || "client";
   return `${name}-report.pdf`;
 }
 
@@ -460,10 +500,10 @@ function getBmiCategory(bmi) {
 function getBodyFatNormalRange() {
   const gender = getRadioValue("gender");
   if (gender === "Male") {
-    return "Normal Fat Range = 10-20%";
+    return "Normal Fat Range: 10-20%";
   }
   if (gender === "Female") {
-    return "Normal Fat Range = 20-30%";
+    return "Normal Fat Range: 20-30%";
   }
   return null;
 }

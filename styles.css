@@ -17,10 +17,7 @@
   --report-green: #1b7f5a;
   --shadow-lg: 0 24px 60px rgba(39, 85, 45, 0.12);
   --shadow-md: 0 16px 32px rgba(39, 85, 45, 0.08);
-  --radius-xl: 28px;
-  --radius-lg: 22px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
+  --radius: 6px;
   --a4-width: 794px;
   --a4-height: 1123px;
 }
@@ -78,7 +75,7 @@ a {
   justify-content: space-between;
   gap: 24px;
   padding: 28px;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius);
   background:
     linear-gradient(135deg, rgba(24, 97, 49, 0.96), rgba(65, 154, 90, 0.92)),
     linear-gradient(120deg, #2a7d43, #6fc187);
@@ -188,7 +185,7 @@ h3 {
 
 .action-btn,
 .nav-btn {
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 14px 18px;
   font-weight: 700;
 }
@@ -208,7 +205,7 @@ h3 {
 .tabs-card,
 .step-panel {
   margin-top: 18px;
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius);
   background: var(--surface);
 }
 
@@ -224,17 +221,19 @@ h3 {
 .step-tab {
   flex: 1 1 220px;
   padding: 15px 16px;
-  border-radius: 16px;
+  border-radius: var(--radius);
   background: #f5faf4;
   color: var(--muted);
   font-weight: 800;
   text-align: left;
+  border: 1px solid var(--line);
 }
 
 .step-tab.active {
   background: linear-gradient(135deg, var(--primary), #68b07e);
   color: #ffffff;
   box-shadow: 0 16px 28px var(--primary-glow);
+  border: 10px;
 }
 
 .step-panel {
@@ -266,8 +265,7 @@ h3 {
 .full-card,
 .sub-card,
 .metric-card,
-.reference-box,
-.report-section {
+.reference-box {
   background: var(--surface-strong);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-md);
@@ -276,7 +274,7 @@ h3 {
 .full-card,
 .sub-card,
 .reference-box {
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius);
   padding: 22px;
 }
 
@@ -333,7 +331,7 @@ h3 {
   gap: 8px;
 }
 
-.field-group label:first-child,
+.labels,
 .field-title {
   font-size: 0.95rem;
   font-weight: 700;
@@ -343,7 +341,7 @@ h3 {
 .field-group select,
 .field-group textarea {
   padding: 13px 14px;
-  border-radius: 14px;
+  border-radius: var(--radius);
   border: 1px solid var(--line-strong);
   background: #fbfdfa;
   color: var(--text);
@@ -386,7 +384,6 @@ h3 {
   padding: 12px 15px;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 700;
 }
 
 .toggle-pill input,
@@ -395,9 +392,14 @@ h3 {
   accent-color: var(--primary);
 }
 
+.toggle-pill span,
+.food-option span {
+  font-size: 14px;
+}
+
 .sub-card h3,
 .reference-box h3,
-.report-section h3 {
+.client-details-title {
   margin-bottom: 16px;
 }
 
@@ -488,7 +490,7 @@ h3 {
   align-items: center;
   gap: 10px;
   padding: 14px 16px;
-  border-radius: 16px;
+  border-radius: var(--radius);
   cursor: pointer;
   min-height: 72px;
 }
@@ -497,8 +499,8 @@ h3 {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 15px;
-  border-radius: 14px;
+  padding: 13px;
+  border-radius: 999px;
   cursor: pointer;
 }
 
@@ -529,35 +531,158 @@ h3 {
   transform: none;
 }
 
-.report-section {
-  border-radius: 6px;
-  padding: 16px;
-  overflow: hidden;
-  margin-bottom:10px;
+.plan-duration-title {
+  margin-top: 3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
 }
 
-.report-section-title {
+.plan-duration-submit {
+  padding: 8px 14px;
+  margin-left: 10px;
+  background-color: var(--report-green);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+#programDuration{
+  padding: 6px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-strong);
+  width: 17rem;
+  margin-bottom: 1rem;
+}
+
+.report-info-section,
+.report-parameter-section,
+.report-nutrition-eating-division,
+.report-health-price-division,
+.report-price-section {
+  padding: 16px 26px;
+  overflow: hidden;
+}
+
+.report-health-conditions-section,
+.report-eating-section {
+  padding: 16px 0;
+}
+
+.report-eating-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 10px;
+  margin-top: 20px;
+  padding: 0 10px;
+}
+
+.report-eating-grid p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.report-eating-grid strong {
+  font-weight: 700;
+}
+
+.report-health-price-division {
+  margin-top: 1rem;
+}
+
+.report-nutrition-section,
+.report-eating-section,
+.report-price-section {
+  flex:1;
+}
+
+.nutrition-box{
+  background-color: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+  border: 1px solid var(--line);
+}
+
+.nutrition-image,
+.report-who-section {
+  margin-top: 1rem;
+}
+
+.who-title {
+  text-align:center;
+  font-weight:800;
+  color:var(--report-green);
+  font-size:17px;
+  margin-bottom:8px;
+}
+
+.program-metrics {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  gap: 10px;
+}
+
+.metric-box {
+  flex: 1;
+  background:var(--report-green);
+  color:#fff;
+  border-radius:6px;
+  padding:10px 6px;
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+}
+
+.metric-box span {
+  display:block;
+  font-size:11px;
+  font-weight:500;
+  margin-top:2px;
+}
+
+.report-titles {
   margin-bottom: 12px;
-  font-size: 1rem;
-  font-size:13px;
+  font-size: 13px;
   font-weight:700;
   border-bottom:1.5px solid #80808050;
   padding-bottom:5px;
   margin-bottom:8px;
   text-transform:uppercase;
-  letter-spacing:.04em;
+  letter-spacing:.04rem;
+  color: var(--report-green);
 }
 
-.report-info-row,
-.summary-row {
+.report-parameter-division{
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.body-parameter-summary,
+.report-health-conditions-section {
+  flex: 2;
+}
+
+.report-bmi-category {
+  flex: 1;
+  align-self: center;
+}
+
+.report-info-row {
   display: grid;
   gap: 10px;
   align-items: center;
   padding: 8px 12px;
-  border-radius: 6px;
-  background: #f9fcf8;
-  border: 1px solid rgba(34, 62, 38, 0.06);
-  font-size: 13px;
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  font-size: 14px;
 }
 
 .report-info-row {
@@ -572,35 +697,32 @@ h3 {
   line-height: 1.2;
 }
 
-.sub-line {
-  font-size: 12px;
+.value-line {
+  font-size: 13px;
   font-weight: 600;
-  color: var(--report-green);
-  margin-top: 2px;
   line-height: 1.1;
 }
 
-.report-condition-item {
-  padding: 10px 12px;
-  border-radius: 6px;
-  background: #1b7f5a15;
-  border: 1px solid rgba(34, 62, 38, 0.06);
-  font-size: 0.93rem;
-  line-height: 1.35;
-  word-break: break-word;
+.sub-line {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--report-green);
-  font-weight: bold;
+  line-height: 1.1;
 }
 
-.app-footer {
-  color: #5f6f66;
-  margin-top: 18px;
-  padding-bottom: 10px;
-  text-align:center;
-  font-size:11px;
+.report-preview {
+  position: relative;
+  width:794px;
+  height:1123px;
+  margin:20px auto;
+  overflow:hidden;
+  background-color: #f9fcf8;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transform-origin: top center;
 }
 
-.report-top {
+.report-header {
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -615,17 +737,17 @@ h3 {
 }
 
 .report-logo {
-  width:44px;
-  height:44px;
+  height:60px;
 }
 
 .report-brand h2 {
-  font-size:18px;
+  font-size:21px;
   font-weight:800;
+  line-height: 1.9rem;
 }
 
 .report-brand p {
-  font-size:11px;
+  font-size:12px;
   color:#808080;
 }
 
@@ -637,122 +759,85 @@ h3 {
   font-size:12px;
 }
 
-.report-sheet-body {
-  padding:14px 18px 10px;
-}
-
 .report-info-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:5px;
 }
 
-.final-report-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+.conditions-summary-grid{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.column-left,
-.column-right {
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+.report-condition-item {
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: #fff;
+  border: 1px solid var(--line-strong);
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.summary-box {flex:1;}
+#wake-up-time-value,
+#tea-coffee-value{
+  font-weight: normal;
+}
 
-.body-parameter-summary {
-  display:flex;
-  flex-direction:column;
-  gap:5px;
+.app-footer {
+  color: #5f6f66;
+  margin-top: 18px;
+  padding-bottom: 10px;
+  text-align:center;
+  font-size:11px;
+}
+
+.report-footer{
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 11px;
+  color: #808080;
+}
+
+.report-nutrition-eating-division,
+.report-health-price-division {
+  display: flex;
+  gap: 1rem;
 }
 
 .summary-row {
   display:grid;
   grid-template-columns:200px 1fr auto;
   align-items:center;
-  gap:6px;
-  background:#80808015; 
-  border:1px solid #80808030;
-  border-radius:6px;
-  padding:7px 10px;
-  font-size:11px;
+  border-bottom: 1px solid var(--line);
+  padding:8px 10px;
 }
 
-.nutrition-box {
-  display: flex; 
-  justify-content: center;
+.report-price-section {
+  background-color: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  height: fit-content;
 }
 
-.nutrition-image {max-height:300px;}
-
-.health-box .conditions-summary-grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:5px;
+.duration-text {
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.who-title {
-  text-align:center;
-  font-weight:800;
-  color:var(--report-green);
-  font-size:14px;
-  margin-bottom:8px;
+.total-amount {
+  margin-top: 14px;
+  color: var(--report-green);
+  font-weight: bold;
+  font-size: 2rem;
 }
 
-.program-metrics {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:6px;
-  margin-bottom:8px;
-}
-
-.metric-box {
-  background:var(--report-green);
-  color:#fff;
-  border-radius:6px;
-  padding:10px 6px;
-  text-align:center;
-  font-size:18px;
-  font-weight:800;
-}
-
-.metric-box span {
-  display:block;
-  font-size:10px;
-  font-weight:500;
-  margin-top:2px;
-}
-
-.program-card {padding:10px;}
-
-.program-card .field-group label {
+.field-group label {
   font-size:11px;
   font-weight:600;
-}
-
-.program-card input {
-  width:100%;
-  padding:6px 8px;
-  border:1px solid #80808050;
-  border-radius:6px;
-  margin-top:4px;
-  font-size:12px;
-}
-
-.total-amount {margin-top:16px;
-  font-size:14px;
-  font-weight:700;
-  color:var(--report-green);
-}
-
-.report-footer {
-  text-align:center;
-  font-size:10px;
-  color:#808080;
-  padding:8px;
-  margin-top:8px;
 }
 
 .report-insta {width: 20px;}
@@ -827,74 +912,63 @@ h3 {
 }
 
 @media print {
+
   @page {
-    size: A4 portrait;
-    margin: 8mm 8mm 8mm 8mm;
+    size: A4;
+    margin: 0;
   }
 
-  body * { visibility: hidden; }
-
-  #reportSheet,
-  #reportSheet * { visibility: visible; }
-
-  #reportSheet {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    font-size: 11px !important;
+  html,
+  body {
+    margin: 0;
+    padding: 0;
     background: #fff !important;
   }
 
-  .report-top { padding: 10px 14px !important; }
-  .report-sheet-body { padding: 10px 14px 6px !important; }
-  .report-section { margin-bottom: 7px !important; page-break-inside: avoid; break-inside: avoid; }
-  .report-section-title { padding-bottom: 3px !important; margin-bottom: 5px !important; }
-
-  .report-info-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3,1fr) !important;
-    gap: 4px !important;
-  }
-  .info-row { padding: 4px 8px !important; }
-
-  .final-report-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 8px !important;
+  .header-card,
+  .tabs-card,
+  .section-heading,
+  .plan-duration-title,
+  #programDuration,
+  .plan-duration-submit,
+  .step-footer,
+  .app-footer {
+    display: none !important;
   }
 
-  .summary-row { padding: 3px 8px !important; font-size: 10px !important; }
-  .summary-row strong { font-size: 10px !important; }
-
-  .nutrition-image { max-height: 130px !important; }
-
-  .metric-box { padding: 7px 4px !important; font-size: 15px !important; }
-
-  .program-card { padding: 7px !important; }
-  .program-card input { display: none !important; }
-
-  .column-right {
-    justify-content: flex-start !important;
-    height: auto !important;
+  .step-panel {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
-  .program-box {
-    margin-top: 0 !important;
+  .app-shell {
+    width: auto !important;
+    margin: 0 !important;
   }
 
-  .metric-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #0d9488 !important; color: #fff !important; }
-  .condition-pill { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #dcfce7 !important; color: #166534 !important; }
-  .who-title { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .total-amount { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .summary-row { background: #f9fafb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .info-row { background: #f9fafb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .report-section-title { color: #374151 !important; }
+  .report-container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-  .final-report-grid { page-break-inside: avoid; break-inside: avoid; }
-  .summary-row { page-break-inside: avoid; break-inside: avoid; }
+  .report-preview {
+    margin: 0 auto !important;
+    page-break-after: always;
+    break-after: page;
+    box-shadow: none !important;
+    background-color: #fff;
+  }
+
+  .report-preview:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }

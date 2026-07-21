@@ -49,30 +49,30 @@
 
           <div class="stack">
             <div class="full-card">
-              <h3>Client Details</h3>
+              <h3 class="client-details-title">Client Details</h3>
               <div class="fields-grid six">
                 <div class="field-group">
-                  <label for="name">Name</label>
+                  <p class="labels">Name</p>
                   <input id="name" name="name" type="text" placeholder="Enter full name" />
                 </div>
                 <div class="field-group">
-                  <label for="mobile">Mobile Number</label>
+                  <p class="labels">Mobile Number</p>
                   <input id="mobile" name="mobile" type="tel" placeholder="Enter mobile number" />
                 </div>
                 <div class="field-group">
-                  <label for="date">Date</label>
+                  <p class="labels">Date</p>
                   <input id="date" name="date" type="date" />
                 </div>
                 <div class="field-group">
-                  <label for="inviteBy">Invite By</label>
+                  <p class="labels">Invite By</p>
                   <input id="inviteBy" name="inviteBy" type="text" placeholder="Enter referral name" />
                 </div>
                 <div class="field-group">
-                  <label for="coachName">Coach Name</label>
+                  <p class="labels">Coach Name</p>
                   <input id="coachName" name="coachName" type="text" placeholder="Enter coach name" />
                 </div>
                 <div class="field-group">
-                  <label for="coachNumber">Coach Number</label>
+                  <p class="labels">Coach Number</p>
                   <input id="coachNumber" name="coachNumber" type="tel" placeholder="Enter coach number" />
                 </div>
               </div>
@@ -98,31 +98,31 @@
 
                   <div class="fields-grid six">
                     <div class="field-group">
-                      <label for="age">Age</label>
+                      <p class="labels">Age</p>
                       <input id="age" name="age" type="number" min="0" placeholder="Years" />
                     </div>
                     <div class="field-group">
-                      <label for="height">Height (cm)</label>
+                      <p class="labels">Height (cm)</p>
                       <input id="height" name="height" type="number" min="0" step="0.1" placeholder="Height" />
                     </div>
                     <div class="field-group">
-                      <label for="weight">Weight (kg)</label>
+                      <p class="labels">Weight (kg)</p>
                       <input id="weight" name="weight" type="number" min="0" step="0.1" placeholder="Weight" />
                     </div>
                     <div class="field-group">
-                      <label for="bodyFat">Body Fat %</label>
+                      <p class="labels">Body Fat %</p>
                       <input id="bodyFat" name="bodyFat" type="number" min="0" step="0.1" placeholder="Body fat %" />
                     </div>
                     <div class="field-group">
-                      <label for="visceralFat">Visceral Fat</label>
+                      <p class="labels">Visceral Fat</p>
                       <input id="visceralFat" name="visceralFat" type="number" min="0" step="0.1" placeholder="Visceral fat" />
                     </div>
                     <div class="field-group">
-                      <label for="bmr">BMR</label>
+                      <p class="labels">BMR</p>
                       <input id="bmr" name="bmr" type="number" min="0" step="0.1" placeholder="BMR value" />
                     </div>
                     <div class="field-group">
-                      <label for="bodyAge">Body Age</label>
+                      <p class="labels">Body Age</p>
                       <input id="bodyAge" name="bodyAge" type="number" min="0" placeholder="Body age" />
                     </div>
                   </div>
@@ -176,15 +176,19 @@
               <div class="stack">
                 <div class="row-3">
                   <div class="field-group">
-                    <label for="wakeUpTime">Wake Up Time</label>
+                    <p class="labels">Wake Up Time</p>
                     <input id="wakeUpTime" name="wakeUpTime" type="time" />
                   </div>
                   <div class="field-group">
                     <span class="field-title">Tea / Coffee</span>
                     <div class="toggle-group">
                       <label class="toggle-pill">
-                        <input type="radio" name="teaCoffee" value="Yes" />
-                        <span>Yes</span>
+                        <input type="radio" name="teaCoffee" value="Tea" />
+                        <span>Tea</span>
+                      </label>
+                      <label class="toggle-pill">
+                        <input type="radio" name="teaCoffee" value="Coffee" />
+                        <span>Coffee</span>
                       </label>
                       <label class="toggle-pill">
                         <input type="radio" name="teaCoffee" value="No" />
@@ -193,24 +197,24 @@
                     </div>
                   </div>
                   <div class="field-group hidden" id="numberOfCupsRow">
-                    <label for="numberOfCups">Number of Cups</label>
+                    <p class="labels">Number of Cups</p>
                     <input id="numberOfCups" name="numberOfCups" type="number" min="0" step="1" placeholder="How many cups?" />
                   </div>
                 </div>
 
                 <div class="row-grid">
                   <div class="field-group">
-                    <label for="breakfastTime">Breakfast Time</label>
+                    <p class="labels">Breakfast Time</p>
                     <input id="breakfastTime" name="breakfastTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="breakfastWhat">Breakfast Details</label>
+                    <p class="labels">Breakfast Details</p>
                     <select id="breakfastWhat" name="breakfastWhat">
                       <option value="">Select breakfast</option>
                       <option>Skip</option>
                       <option>Idli</option>
                       <option>Dosa</option>
-                      <option>Poha &amp; Upma</option>
+                      <option>Poha & Upma</option>
                       <option>Paratha</option>
                       <option>Bread + Omelette</option>
                       <option>Tea or Milk</option>
@@ -222,11 +226,11 @@
 
                 <div class="row-grid">
                   <div class="field-group">
-                    <label for="lunchTime">Lunch Time</label>
+                    <p class="labels">Lunch Time</p>
                     <input id="lunchTime" name="lunchTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="lunchWhat">Lunch Details</label>
+                    <p class="labels">Lunch Details</p>
                     <select id="lunchWhat" name="lunchWhat">
                       <option value="">Select lunch</option>
                       <option>Skip</option>
@@ -253,18 +257,18 @@
                     </div>
                   </div>
                   <div class="field-group hidden" id="snacksWhatRow">
-                    <label for="snacksWhat">Snacks Details</label>
+                    <p class="labels">Snacks Details</p>
                     <input id="snacksWhat" name="snacksWhat" type="text" placeholder="Enter snack details" />
                   </div>
                 </div>
 
                 <div class="row-grid">
                   <div class="field-group">
-                    <label for="dinnerTime">Dinner Time</label>
+                    <p class="labels">Dinner Time</p>
                     <input id="dinnerTime" name="dinnerTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="dinnerWhat">Dinner Details</label>
+                    <p class="labels">Dinner Details</p>
                     <select id="dinnerWhat" name="dinnerWhat">
                       <option value="">Select dinner</option>
                       <option>Skip</option>
@@ -299,8 +303,8 @@
                     </div>
                   </div>
                   <div class="field-group">
-                    <label for="waterIntake">Water Intake (liters per day)</label>
-                    <input id="waterIntake" name="waterIntake" type="number" min="0" step="0.1" placeholder="Enter liters per day" />
+                    <p class="labels">Water Intake (liters per day)</p>
+                    <input id="waterIntake" name="waterIntake" type="number" min="0" step="1" placeholder="Enter liters per day" />
                     <p class="water-note">Approx. 1 liter water per 20 kg body weight</p>
                   </div>
                 </div>
@@ -343,10 +347,16 @@
             <div class="section-badge">Printable Summary</div>
           </div>
 
-          <div class="report-stage">
-            <article class="report-page" id="reportSheet">
+          <p class="plan-duration-title">Plan Duration</p>
+          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
+          <button type="button" onclick="calculateCost()" class="plan-duration-submit">Submit</button>
 
-              <div class="report-top">
+          <div class="report-container">
+            <!-- Report page 1 -->
+            <div class="report-preview">
+
+              <!-- Header section -->
+              <div class="report-header">
                 <div class="report-brand">
                   <img class="report-logo" src="./gs-community-logo.png" alt="GS logo" />
                   <div>
@@ -360,54 +370,98 @@
                 </a>
               </div>
 
-              <div class="report-sheet-body">
+              <!-- Client info section -->
+              <div class="report-info-section">
+                <h3 class="report-titles">Client Basic Info</h3>
+                <div class="report-info-grid" id="reportClientInfo"></div>
+              </div>
 
-                <section class="report-section">
-                  <h3 class="report-section-title">Client Basic Info</h3>
-                  <div class="report-info-grid" id="reportClientInfo"></div>
-                </section>
+              <!-- Body parameters section -->
+              <div class="report-parameter-section">
+                  <h3 class="report-titles">Body Parameter Summary</h3>
+                  <div class="report-parameter-division">
+                    <div class="body-parameter-summary" id="reportBodySummary"></div>
+                    <div class="report-bmi-category">
+                      <div class="metric-card">
+                        <span>BMI Category</span>
+                        <strong class="metric-badge" id="report-bmi-badge" data-state="neutral">--</strong>
+                      </div>
+                    </div>
+                  </div>
+              </div>
 
-                <div class="final-report-grid">
-                  <div class="column-left">
-                    <section class="report-section summary-box">
-                      <h3 class="report-section-title">Body Parameter Summary</h3>
-                      <div class="body-parameter-summary" id="reportBodySummary"></div>
-                    </section>
-                    <section class="report-section">
-                      <h3 class="report-section-title">Nutrition Recommendation</h3>
-                      <div class="nutrition-box">
+              <div class="report-nutrition-eating-division">
+                  <!-- Nutrition box and WHO section -->
+                  <div class="report-nutrition-section">
+                    <div class="nutrition-box">
+                      <h3 class="report-titles">Nutrition Recommendation</h3>
+                      <div >
                         <img src="./nutrition-pyramid.jpeg" class="nutrition-image" alt="Nutrition pyramid" />
                       </div>
-                    </section>
-                  </div>
-                  <div class="column-right">
-                    <section class="report-section health-box">
-                      <h3 class="report-section-title">Health Conditions Summary</h3>
-                      <div class="conditions-summary-grid" id="reportConditions"></div>
-                    </section>
-                    <section class="report-section program-box">
-                      <h3 class="report-section-title">Program Plan</h3>
-                      <div class="who-title">WHO 70% Need Doctor Visit</div>
+                    </div>
+                    <div class="report-who-section">
+                      <h2 class="who-title">WHO says 70% Need Doctor Visit</h2>
                       <div class="program-metrics">
                         <div class="metric-box">80%<span>Nutrition</span></div>
                         <div class="metric-box">20%<span>Workout</span></div>
-                        <div class="metric-box">100%<span>Guarantee Result</span></div>
+                        <div class="metric-box">100%<span>Guaranteed Result</span></div>
                       </div>
-                      <div class="program-card">
-                        <div class="field-group">
-                          <label for="programDuration">Program Duration (Days)</label>
-                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
-                        </div>
-                        <div class="total-amount" id="programTotalValue">Total Amount = Rs. 0</div>
-                      </div>
-                    </section>
+                    </div>
                   </div>
+                  
+                  <!-- Eating habits section -->
+                  <div class="report-eating-section">
+                    <h3 class="report-titles">Eating habits</h3>
+                    
+                    <div class="report-eating-grid">
+                      <p><strong>Wakeup Time:</strong> <span id="wake-up-time-value">--</span></p>
+                      <p><strong>Tea/Coffee:</strong> <span id="tea-coffee-value">--</span></p>
+
+                      <p><strong>Breakfast Time:</strong> <span id="breakfast-time-value">--</span></p>
+                      <p><strong>Breakfast:</strong> <span id="breakfast-details-value">--</span></p>
+
+                      <p><strong>Lunch Time:</strong> <span id="lunch-time-value">--</span></p>
+                      <p><strong>Lunch:</strong> <span id="lunch-details-value">--</span></p>
+
+                      <p><strong>Snacks:</strong> <span id="snacks-value">--</span></p>
+                      <p id="snacksDetailsColumn"><strong>Snacks Details:</strong> <span id="snacks-details-value">--</span></p>
+
+                      <p><strong>Dinner Time:</strong> <span id="dinner-time-value">--</span></p>
+                      <p><strong>Dinner:</strong> <span id="dinner-details-value">--</span></p>
+
+                      <p><strong>Water Intake:</strong> <span id="water-intake-value">--</span></p>
+                    </div>
+                  </div>
+              </div>
+
+              <p class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</p>
+
+            </div>
+
+            <!-- Report page 2 -->
+            <div class="report-preview">
+
+              <div class="report-health-price-division">
+
+                <!-- Health conditions section -->
+                <div class="report-health-conditions-section">
+                  <h3 class="report-titles">Health Conditions Summary</h3>
+                  <div class="conditions-summary-grid" id="reportConditions"></div>
                 </div>
 
+                <!-- Program plan section -->
+                <div class="report-price-section">
+                  <h3 class="report-titles">Program Plan</h3>
+                  <p class="duration-text">Duration: <span id="programDaysSelected">0 days</span></p>
+                  <p class="total-amount" id="programTotalValue">₹0</p>
+                </div>
               </div>
-              <footer class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</footer>
-            </article>
+
+              <p class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</p>
+
+            </div>
           </div>
+
         </section>
 
         <div class="step-footer">
@@ -422,7 +476,6 @@
       <footer class="app-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</footer>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
