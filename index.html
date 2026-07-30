@@ -348,8 +348,10 @@
           </div>
 
           <p class="plan-duration-title">Plan Duration</p>
-          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
-          <button type="button" onclick="calculateCost()" class="plan-duration-submit">Submit</button>
+          <div class="plan-duration-input-area">
+            <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
+            <button type="button" onclick="calculateCost()" class="plan-duration-submit">Submit</button>
+          </div>
 
           <div class="report-container">
             <!-- Report page 1 -->
@@ -390,48 +392,36 @@
                   </div>
               </div>
 
-              <div class="report-nutrition-eating-division">
-                  <!-- Nutrition box and WHO section -->
-                  <div class="report-nutrition-section">
-                    <div class="nutrition-box">
-                      <h3 class="report-titles">Nutrition Recommendation</h3>
-                      <div >
-                        <img src="./nutrition-pyramid.jpeg" class="nutrition-image" alt="Nutrition pyramid" />
-                      </div>
-                    </div>
-                    <div class="report-who-section">
-                      <h2 class="who-title">WHO says 70% Need Doctor Visit</h2>
-                      <div class="program-metrics">
-                        <div class="metric-box">80%<span>Nutrition</span></div>
-                        <div class="metric-box">20%<span>Workout</span></div>
-                        <div class="metric-box">100%<span>Guaranteed Result</span></div>
-                      </div>
-                    </div>
-                  </div>
+              <div class="report-eating-health-division"> 
+                <!-- Eating habits section -->
+                <div class="report-eating-section">
+                  <h3 class="report-titles">Eating habits</h3>
                   
-                  <!-- Eating habits section -->
-                  <div class="report-eating-section">
-                    <h3 class="report-titles">Eating habits</h3>
-                    
-                    <div class="report-eating-grid">
-                      <p><strong>Wakeup Time:</strong> <span id="wake-up-time-value">--</span></p>
-                      <p><strong>Tea/Coffee:</strong> <span id="tea-coffee-value">--</span></p>
+                  <div class="report-eating-grid">
+                    <p><strong>Wakeup Time:</strong> <span id="wake-up-time-value">--</span></p>
+                    <p><strong>Tea/Coffee:</strong> <span id="tea-coffee-value">--</span></p>
 
-                      <p><strong>Breakfast Time:</strong> <span id="breakfast-time-value">--</span></p>
-                      <p><strong>Breakfast:</strong> <span id="breakfast-details-value">--</span></p>
+                    <p><strong>Breakfast Time:</strong> <span id="breakfast-time-value">--</span></p>
+                    <p><strong>Breakfast:</strong> <span id="breakfast-details-value">--</span></p>
 
-                      <p><strong>Lunch Time:</strong> <span id="lunch-time-value">--</span></p>
-                      <p><strong>Lunch:</strong> <span id="lunch-details-value">--</span></p>
+                    <p><strong>Lunch Time:</strong> <span id="lunch-time-value">--</span></p>
+                    <p><strong>Lunch:</strong> <span id="lunch-details-value">--</span></p>
 
-                      <p><strong>Snacks:</strong> <span id="snacks-value">--</span></p>
-                      <p id="snacksDetailsColumn"><strong>Snacks Details:</strong> <span id="snacks-details-value">--</span></p>
+                    <p><strong>Snacks:</strong> <span id="snacks-value">--</span></p>
+                    <p id="snacksDetailsColumn"><strong>Snacks Details:</strong> <span id="snacks-details-value">--</span></p>
 
-                      <p><strong>Dinner Time:</strong> <span id="dinner-time-value">--</span></p>
-                      <p><strong>Dinner:</strong> <span id="dinner-details-value">--</span></p>
+                    <p><strong>Dinner Time:</strong> <span id="dinner-time-value">--</span></p>
+                    <p><strong>Dinner:</strong> <span id="dinner-details-value">--</span></p>
 
-                      <p><strong>Water Intake:</strong> <span id="water-intake-value">--</span></p>
-                    </div>
+                    <p><strong>Water Intake:</strong> <span id="water-intake-value">--</span></p>
                   </div>
+                </div>
+
+                <!-- Health conditions section -->
+                <div class="report-health-conditions-section">
+                  <h3 class="report-titles">Health Conditions Summary</h3>
+                  <div class="conditions-summary-grid" id="reportConditions"></div>
+                </div>
               </div>
 
               <p class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</p>
@@ -441,20 +431,36 @@
             <!-- Report page 2 -->
             <div class="report-preview">
 
-              <div class="report-health-price-division">
+              <div class="report-nutrition-price-division">
 
-                <!-- Health conditions section -->
-                <div class="report-health-conditions-section">
-                  <h3 class="report-titles">Health Conditions Summary</h3>
-                  <div class="conditions-summary-grid" id="reportConditions"></div>
+                <!-- Nutrition box and WHO section -->
+                <div class="report-nutrition-section">
+                  <div class="nutrition-box">
+                    <h3 class="report-titles">Nutrition Recommendation</h3>
+                    <div >
+                      <img src="./nutrition-pyramid.jpeg" class="nutrition-image" alt="Nutrition pyramid" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <!-- Program plan section -->
+                  <div class="report-price-section">
+                    <h3 class="report-titles">Program Plan</h3>
+                    <p class="duration-text">Duration: <span id="programDaysSelected">0 days</span></p>
+                    <p class="total-amount" id="programTotalValue">₹0</p>
+                  </div>
+
+                  <div class="report-who-section">
+                    <h2 class="who-title">WHO says 7 out of 10 people visit doctor</h2>
+                    <div class="program-metrics">
+                      <div class="metric-box">80%<span>Nutrition</span></div>
+                      <div class="metric-box">20%<span>Workout</span></div>
+                      <div class="metric-box">100%<span>Guaranteed Result</span></div>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Program plan section -->
-                <div class="report-price-section">
-                  <h3 class="report-titles">Program Plan</h3>
-                  <p class="duration-text">Duration: <span id="programDaysSelected">0 days</span></p>
-                  <p class="total-amount" id="programTotalValue">₹0</p>
-                </div>
               </div>
 
               <p class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</p>

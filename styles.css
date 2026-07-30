@@ -555,13 +555,18 @@ h3 {
   border-radius: var(--radius);
   border: 1px solid var(--line-strong);
   width: 17rem;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
+}
+
+.report-container {
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .report-info-section,
 .report-parameter-section,
-.report-nutrition-eating-division,
-.report-health-price-division,
+.report-eating-health-division,
+.report-nutrition-price-division,
 .report-price-section {
   padding: 16px 26px;
   overflow: hidden;
@@ -569,13 +574,13 @@ h3 {
 
 .report-health-conditions-section,
 .report-eating-section {
-  padding: 16px 0;
+  width: 50%;
 }
 
 .report-eating-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px 10px;
+  gap: 25px 10px;
   margin-top: 20px;
   padding: 0 10px;
 }
@@ -590,12 +595,11 @@ h3 {
   font-weight: 700;
 }
 
-.report-health-price-division {
+.report-nutrition-price-division {
   margin-top: 1rem;
 }
 
 .report-nutrition-section,
-.report-eating-section,
 .report-price-section {
   flex:1;
 }
@@ -664,8 +668,7 @@ h3 {
   gap: 16px;
 }
 
-.body-parameter-summary,
-.report-health-conditions-section {
+.body-parameter-summary {
   flex: 2;
 }
 
@@ -802,8 +805,8 @@ h3 {
   color: #808080;
 }
 
-.report-nutrition-eating-division,
-.report-health-price-division {
+.report-eating-health-division,
+.report-nutrition-price-division {
   display: flex;
   gap: 1rem;
 }
@@ -842,6 +845,10 @@ h3 {
 
 .report-insta {width: 20px;}
 
+.plan-duration-input-area {
+  margin-bottom: 2rem;
+}
+
 @media (max-width: 1080px) {
   .fields-grid.six,
   .food-grid {
@@ -854,6 +861,12 @@ h3 {
 
   .health-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 880px) {
+  .report-container {
+    zoom: 0.7;
   }
 }
 
@@ -911,11 +924,45 @@ h3 {
   }
 }
 
+@media (max-width: 640px) {
+  .report-container {
+    zoom: 0.6;
+  }
+}
+
+@media (max-width: 560px) {
+  .report-container {
+    zoom: 0.5;
+  }
+}
+
+@media (max-width: 460px) {
+  .report-container {
+    zoom: 0.4;
+  }
+}
+
+@media (max-width: 426px) {
+  .plan-duration-input-area{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #programDuration{
+    width: auto;
+  }
+}
+
+
 @media print {
 
   @page {
     size: A4;
     margin: 0;
+  }
+
+  .report-container {
+    zoom: 1 !important;
   }
 
   html,
