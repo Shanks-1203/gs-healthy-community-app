@@ -285,12 +285,12 @@
                     <span class="field-title">Food Preference</span>
                     <div class="food-grid">
                       <label class="food-option">
-                        <input type="checkbox" name="foodPreference" value="Veg" />
+                        <input type="checkbox" name="foodPreference" value="Vegetarian" />
                         <span>Veg</span>
                       </label>
                       <label class="food-option">
-                        <input type="checkbox" name="foodPreference" value="Non-Veg" />
-                        <span>Non-Veg</span>
+                        <input type="checkbox" name="foodPreference" value="Non-vegetarian" />
+                        <span>Non-veg</span>
                       </label>
                       <label class="food-option">
                         <input type="checkbox" name="foodPreference" value="Eggetarian" />
@@ -345,12 +345,6 @@
               <p class="section-copy">A4-style printable report that updates automatically as the form changes.</p>
             </div>
             <div class="section-badge">Printable Summary</div>
-          </div>
-
-          <p class="plan-duration-title">Plan Duration</p>
-          <div class="plan-duration-input-area">
-            <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
-            <button type="button" onclick="calculateCost()" class="plan-duration-submit">Submit</button>
           </div>
 
           <div class="report-container">
@@ -413,6 +407,12 @@
                     <p><strong>Dinner Time:</strong> <span id="dinner-time-value">--</span></p>
                     <p><strong>Dinner:</strong> <span id="dinner-details-value">--</span></p>
 
+                    <div>
+                      <p><strong>Food Preference:</strong></p>
+                      <div id="food-preference-list">
+                        <p>❌ None selected</p>
+                      </div>
+                    </div>
                     <p><strong>Water Intake:</strong> <span id="water-intake-value">--</span></p>
                   </div>
                 </div>
@@ -447,10 +447,14 @@
                   <!-- Program plan section -->
                   <div class="report-price-section">
                     <h3 class="report-titles">Program Plan</h3>
-                    <p class="duration-text">Duration: <span id="programDaysSelected">0 days</span></p>
+                    <p class="duration-text">Duration: 
+                      <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
+                      <span id="programDaysSelected">0 days</span>
+                    </p>
                     <p class="total-amount" id="programTotalValue">₹0</p>
                   </div>
 
+                  <!-- WHO explanation section -->
                   <div class="report-who-section">
                     <h2 class="who-title">WHO says 7 out of 10 people visit doctor</h2>
                     <div class="program-metrics">
@@ -460,8 +464,10 @@
                     </div>
                   </div>
                 </div>
-
               </div>
+
+              <p class="health-quote">Take care of your body. It's the only place you have to live.</p>
+              <hr class="end-line">
 
               <p class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</p>
 

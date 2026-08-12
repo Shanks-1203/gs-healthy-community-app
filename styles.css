@@ -539,23 +539,16 @@ h3 {
   text-transform: uppercase;
 }
 
-.plan-duration-submit {
-  padding: 8px 14px;
-  margin-left: 10px;
-  background-color: var(--report-green);
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
 #programDuration{
   padding: 6px;
   border-radius: var(--radius);
   border: 1px solid var(--line-strong);
-  width: 17rem;
+  width: 14rem;
   margin-bottom: 10px;
+}
+
+#programDaysSelected{
+  display: none;
 }
 
 .report-container {
@@ -583,6 +576,13 @@ h3 {
   gap: 25px 10px;
   margin-top: 20px;
   padding: 0 10px;
+}
+
+#food-preference-list{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
 }
 
 .report-eating-grid p {
@@ -648,6 +648,19 @@ h3 {
   font-size:11px;
   font-weight:500;
   margin-top:2px;
+}
+
+.health-quote {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1.9rem;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.end-line {
+  width: 40%;
+  margin-top: 1rem;
 }
 
 .report-titles {
@@ -827,7 +840,7 @@ h3 {
 }
 
 .duration-text {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
 }
 
@@ -844,10 +857,6 @@ h3 {
 }
 
 .report-insta {width: 20px;}
-
-.plan-duration-input-area {
-  margin-bottom: 2rem;
-}
 
 @media (max-width: 1080px) {
   .fields-grid.six,
@@ -942,17 +951,6 @@ h3 {
   }
 }
 
-@media (max-width: 426px) {
-  .plan-duration-input-area{
-    display: flex;
-    flex-direction: column;
-  }
-
-  #programDuration{
-    width: auto;
-  }
-}
-
 
 @media print {
 
@@ -977,7 +975,6 @@ h3 {
   .section-heading,
   .plan-duration-title,
   #programDuration,
-  .plan-duration-submit,
   .step-footer,
   .app-footer {
     display: none !important;
@@ -1012,6 +1009,10 @@ h3 {
   .report-preview:last-child {
     page-break-after: auto;
     break-after: auto;
+  }
+
+  #programDaysSelected{
+    display: inline;
   }
 
   * {

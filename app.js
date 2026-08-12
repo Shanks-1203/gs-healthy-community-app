@@ -210,6 +210,12 @@ function renderReport() {
 
   const waterIntake = document.getElementById("water-intake-value");
   waterIntake.innerText = `${data.waterIntake} litres`;
+  
+  const foodPreference = [...data.foodPreference];
+  const foodPreferenceList = document.getElementById("food-preference-list");
+  foodPreferenceList.innerHTML = foodPreference.length
+    ? foodPreference.map((item) => `<p>✔️ ${escapeHtml(item)}</p>`).join("")
+    : `<p>❌ None selected</p>`;
 
   const selectedConditions = [...data.selectedConditions];
   if (data.otherCondition) {
@@ -217,7 +223,6 @@ function renderReport() {
   }
 
   const conditionsBox = document.getElementById("reportConditions");
-  conditionsBox.classList.toggle("compact", selectedConditions.length > 8);
   conditionsBox.innerHTML = selectedConditions.length
     ? selectedConditions.map((item) => `<div class="report-condition-item">${escapeHtml(item)}</div>`).join("")
     : `<div class="report-condition-item muted">No Health Issues</div>`;
@@ -238,8 +243,8 @@ function formatTime(time) {
 function renderReportRow(label, value) {
   return `
     <div class="report-info-row">
-      <span>${escapeHtml(label)}</span>
-      <strong>${escapeHtml(valueOrFallback(value))}</strong>
+      <strong>${escapeHtml(label)}:</strong>
+      <span>${escapeHtml(valueOrFallback(value))}</span>
     </div>
   `;
 }
